@@ -1,0 +1,34 @@
+!!!
+%html
+  %head
+    %title Search Songs
+  %body
+    %form{ :action => "", :method => "post"}
+      %fieldset
+        %label{:for => "song"} Song:
+        %input{:type => "text", :name => "song", :class => "text"}
+        %input{:type => "submit", :value => "Search", :class => "button"}
+    -if not songAdded.nil?
+      %h4 #{songAdded} added to the playlist! (Not really...)
+    -if not resultsList.nil?
+      %table{border: "1"}
+        %tr
+          %td
+          %td Artist
+          %td Title
+          %td Id
+          %td File
+        - resultsList.each do |result|
+        - songPath = result.at_css('SongPath').text
+          %tr
+            %td
+              %form{ :action => "addSong", :method => "post"}
+                %input{:type => "hidden", :name => "file", :class => "text", :value => songPath}
+                %input{:type => "submit", :value => "Add", :class => "button"}
+            %td #{result.at_css('Artist').text}
+            %td #{result.at_css('Title').text}
+            %td
+              #{result.at_css('ID').text}
+            %td #{songPath}
+        -#count = result[1]
+        -# result = result.first

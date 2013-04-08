@@ -15,3 +15,5 @@ You'll need ruby 1.9.3
     ruby xml_song_search.rb
 
 It takes about a minute to start up right now.
+
+After its done starting up, point your browser at http://localhost:4567/
